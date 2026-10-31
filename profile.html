@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gamer Profile | All Star Gamers</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="top-bar">
+    <div>
+        <h1>GAMER <span>PROFILE</span></h1>
+        <p>YOUR GAMING IDENTITY 🇱🇷</p>
+    </div>
+    <button class="notification" id="profileSettings">⚙️</button>
+</header>
+
+<main>
+
+    <section class="profile-hero">
+
+        <div class="profile-cover">
+            <span>⭐ ALL STAR GAMER</span>
+        </div>
+
+        <div class="profile-details">
+
+            <div class="profile-avatar">🎮</div>
+
+            <h2 id="gamerName">King Swaray</h2>
+            <p class="gamer-id">Gamer ID: ASG-001</p>
+
+            <p class="profile-bio">
+                🇱🇷 Liberian gamer | Free Fire & eFootball
+                <br>Playing for fun. Competing to win. 🔥
+            </p>
+
+            <button class="edit-profile" id="editProfile">
+                ✏️ Edit Profile
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <section class="profile-stats">
+
+        <div>
+            <strong id="postCount">3</strong>
+            <span>Posts</span>
+        </div>
+
+        <div>
+            <strong id="followerCount">120</strong>
+            <span>Followers</span>
+        </div>
+
+        <div>
+            <strong id="friendCount">48</strong>
+            <span>Friends</span>
+        </div>
+
+    </section>
+
+
+    <section class="section">
+
+        <div class="section-title">
+            <h2>🎮 My Games</h2>
+        </div>
+
+        <div class="profile-games">
+
+            <div class="profile-game">
+                <span>🔥</span>
+                <div>
+                    <strong>Free Fire</strong>
+                    <p>Battle Royale</p>
+                </div>
+            </div>
+
+            <div class="profile-game">
+                <span>⚽</span>
+                <div>
+                    <strong>eFootball</strong>
+                    <p>Football</p>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="section">
+
+        <div class="section-title">
+            <h2>🏅 My Badges</h2>
+        </div>
+
+        <div class="badge-list">
+            <div class="badge">
+                <span>🌟</span>
+                <small>Rising Star</small>
+            </div>
+
+            <div class="badge">
+                <span>🔥</span>
+                <small>Fire Player</small>
+            </div>
+
+            <div class="badge">
+                <span>🇱🇷</span>
+                <small>Liberian Gamer</small>
+            </div>
+        </div>
+
+    </section>
+
+
+    <section class="section">
+
+        <div class="section-title">
+            <h2>📸 My Posts</h2>
+            <button class="text-button" id="createPost">+ Create</button>
+        </div>
+
+        <div class="post-grid" id="postGrid">
+
+            <div class="post-card">
+                <span>🔥</span>
+                <p>Free Fire Moments</p>
+            </div>
+
+            <div class="post-card">
+                <span>⚽</span>
+                <p>Match Day</p>
+            </div>
+
+            <div class="post-card">
+                <span>🏆</span>
+                <p>Gaming Highlights</p>
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<nav class="bottom-nav">
+
+    <a href="index.html">
+        <span>⌂</span>
+        Home
+    </a>
+
+    <a href="explore.html">
+        <span>⌕</span>
+        Explore
+    </a>
+
+    <a href="#" id="navCreate">
+        <span class="create">+</span>
+        Create
+    </a>
+
+    <a href="#" id="navActivity">
+        <span>♡</span>
+        Activity
+    </a>
+
+    <a class="active" href="profile.html">
+        <span>◉</span>
+        Profile
+    </a>
+
+</nav>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Star Gamers | Login</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 24px 16px;
+            background: #151515;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .auth-card {
+            max-width: 420px;
+            margin: 30px auto;
+            padding: 24px;
+            background: #222;
+            border: 1px solid #393939;
+            border-radius: 18px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #b7ff00;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #bbb;
+        }
+
+        h2 {
+            margin-top: 28px;
+            font-size: 19px;
+        }
+
+        input {
+            display: block;
+            width: 100%;
+            margin: 12px 0;
+            padding: 14px;
+            border: 1px solid #555;
+            border-radius: 9px;
+            background: #151515;
+            color: white;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 9px;
+            background: #b7ff00;
+            color: #151515;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            opacity: 0.6;
+        }
+
+        #authMessage {
+            margin-top: 18px;
+            overflow-wrap: anywhere;
+            line-height: 1.5;
+            color: #b7ff00;
+        }
+
+        .divider {
+            margin: 28px 0;
+            border: 0;
+            border-top: 1px solid #444;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="auth-card">
+        <h1>⭐ ALL STAR GAMERS</h1>
+        <p class="subtitle">
+            Liberia's Gaming Community
+        </p>
+
+        <h2>Create your gamer account</h2>
+
+        <form id="signupForm">
+            <input
+            id="signupEmail"
+            type="email"
+            placeholder="Your email address"
+            autocomplete="email"
+            required
+            >
+
+            <input
+            id="signupPassword"
+            type="password"
+            placeholder="Create a password (8+ characters)"
+            minlength="8"
+            autocomplete="new-password"
+            required
+            >
+
+            <button type="submit" id="signupButton">
+                Create Account
+            </button>
+        </form>
+
+        <hr class="divider">
+
+        <h2>Welcome back, gamer!</h2>
+
+        <form id="loginForm">
+            <input
+            id="loginEmail"
+            type="email"
+            placeholder="Your email address"
+            autocomplete="email"
+            required
+            >
+
+            <input
+            id="loginPassword"
+            type="password"
+            placeholder="Your password"
+            autocomplete="current-password"
+            required
+            >
+
+            <button type="submit" id="loginButton">
+                Log In
+            </button>
+        </form>
+
+        <p id="authMessage" role="status" aria-live="polite"></p>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+
+        const SUPABASE_URL = "https://vbgkmwryukohawbxmtgw.supabase.co";
+        const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_Pv4j_lSRTiVIg1XD3tpkig_206MZTs_";
+
+
+        const authClient = window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_PUBLISHABLE_KEY
+        );
+
+        const message = document.getElementById("authMessage");
+
+        function showMessage(text) {
+            message.textContent = text;
+        }
+
+        document.getElementById("signupForm")
+        .addEventListener("submit", async function(event) {
+            event.preventDefault();
+
+            const button = document.getElementById("signupButton");
+            button.disabled = true;
+            showMessage("Creating your account...");
+
+            try {
+                const email =
+                document.getElementById("signupEmail").value.trim();
+
+                const password =
+                document.getElementById("signupPassword").value;
+
+                const {
+                    data, error
+                } = await authClient.auth.signUp({
+                        email: email,
+                        password: password
+                    });
+
+                if (error) throw error;
+
+                if (data.session) {
+                    showMessage("Account created! Welcome to All Star Gamers.");
+                    window.location.href = "index.html";
+                } else {
+                    showMessage(
+                        "Registration submitted! Check your email for a confirmation link, then log in."
+                    );
+                }
+            } catch (error) {
+                showMessage("Registration failed: " + error.message);
+            } finally {
+                button.disabled = false;
+            }
+        });
+
+        document.getElementById("loginForm")
+        .addEventListener("submit", async function(event) {
+            event.preventDefault();
+
+            const button = document.getElementById("loginButton");
+            button.disabled = true;
+            showMessage("Logging in...");
+
+            try {
+                const email =
+                document.getElementById("loginEmail").value.trim();
+
+                const password =
+                document.getElementById("loginPassword").value;
+
+                const {
+                    error
+                } =
+                await authClient.auth.signInWithPassword({
+                    email: email,
+                    password: password
+                });
+
+                if (error) throw error;
+
+                showMessage("Login successful! Welcome back.");
+                window.location.href = "index.html";
+            } catch (error) {
+                showMessage("Login failed: " + error.message);
+            } finally {
+                button.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
