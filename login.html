@@ -183,9 +183,12 @@
                 const {
                     data, error
                 } = await authClient.auth.signUp({
-                        email: email,
-                        password: password
-                    });
+    email,
+    password,
+    options: {
+        emailRedirectTo: "https://yebeehswaray-prog.github.io/231AllStarGamers/login.html"
+    }
+});
 
                 if (error) throw error;
 
